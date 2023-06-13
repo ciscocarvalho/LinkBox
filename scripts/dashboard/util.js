@@ -231,49 +231,57 @@ const createDataContainer = (itemType, item) => {
   }
 };
 
-const showCardBtns = card => {
-    card.querySelectorAll(".card-btn").forEach(btn => {
-        btn.classList.remove("hidden")
-    })
+export const getBtns = element => {
+    return element.querySelectorAll(".card-btn")
 }
 
-const hideCardBtns = card => {
-    card.querySelectorAll(".card-btn").forEach(btn => {
-        if (!btn.classList.contains("select-btn")) {
-            btn.classList.add("hidden")
-        }
-    })
+export const showBtn = btn => { btn.classList.remove("hidden") };
+
+export const hideBtn = btn => { btn.classList.add("hidden") };
+
+export const showBtns = (element, predicate) => {
+    getBtns(element).forEach(btn => {
+        if (!predicate || predicate(btn)) showBtn(btn);
+    });
+}
+
+export const hideBtns = (element, predicate) => {
+    getBtns(element).forEach(btn => {
+        if (!predicate || predicate(btn)) hideBtn(btn);
+    });
 }
 
 const showBtnsContainer = btnsContainer => btnsContainer.classList.remove("hidden");
 
 const hideBtnsContainer = btnsContainer => btnsContainer.classList.add("hidden");
 
+
 const addCardEventListeners = card => {
     const btnsContainer = card.querySelector(".btns-container");
+    const predicateForHiding = btn => !btn.classList.contains("select-btn");
 
     card.addEventListener("mouseout", () => {
         if (card.enabledToggleBtnsBasedOnHover) {
             hideBtnsContainer(btnsContainer);
-            hideCardBtns(card);
+            hideBtns(card, predicateForHiding);
         }
     });
 
     card.addEventListener("mouseover", () => {
         showBtnsContainer(btnsContainer);
-        if (card.enabledToggleBtnsBasedOnHover) showCardBtns(card);
+        if (card.enabledToggleBtnsBasedOnHover) showBtns(card);
     });
 
     card.addEventListener("custom:disableToggleBtnsBasedOnHover", event => {
         card.enabledToggleBtnsBasedOnHover = false;
         showBtnsContainer(btnsContainer);
-        hideCardBtns(card);
+        hideBtns(card, predicateForHiding);
     })
 
     card.addEventListener("custom:enableToggleBtnsBasedOnHover", event => {
         card.enabledToggleBtnsBasedOnHover = true;
         hideBtnsContainer(btnsContainer);
-        showCardBtns(card);
+        showBtns(card);
         // showCardBtns(card);
     })
 }
@@ -294,7 +302,7 @@ const createItemCardFactory = (itemType, item) => {
 
         card.enabledToggleBtnsBasedOnHover = !isInSmallScreenWidth;
 
-        if (isInSmallScreenWidth) hideCardBtns(card);
+        if (isInSmallScreenWidth) hideBtns(card, btn => !btn.classList.contains("select-btn"));
         addCardEventListeners(card);
         unselectCardWithoutEventDispatch(card);
 

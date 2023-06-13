@@ -152,8 +152,43 @@ const createMessageForCardsFooter = selectedCardsAmount => {
   return message;
 }
 
+const originalCardsFooterBtnContainer = document.querySelector(".cards-footer-btn-container");
+
 const updateCardsFooter = () => {
   const selectedCards = util.getSelectedCards();
+  const dashboardState = new DashboardState();
+  const isInSmallScreenWidth = dashboardState.isInSmallScreenWidth();
+
+  if (selectedCards.length > 0) {
+    const cardsFooterBtnContainer = document.querySelector(".cards-footer-btn-container");
+    const firstCardClone = selectedCards[0].cloneNode(true);
+    firstCardClone.style.backgroundColor = "#00000000";
+    const dataContainer = firstCardClone.querySelector(".link-data-container, .folder-data-container");
+    dataContainer.classList.add("hidden");
+    const oldBtns = util.getBtns(selectedCards[0]);
+    const newBtns = util.getBtns(firstCardClone);
+
+    for (let i = 0; i < oldBtns.length; i++) {
+      newBtns[i].onclick = oldBtns[i].onclick;
+    }
+
+    util.showBtns(firstCardClone);
+    firstCardClone.classList.add("cards-footer-btn-container");
+
+    if (selectedCards.length === 1 && isInSmallScreenWidth) {
+      newBtns.forEach(btn => {
+        if (btn.classList.contains("select-btn")) {
+          util.hideBtn(btn);
+        }
+      });
+      cardsFooterBtnContainer.parentElement.appendChild(firstCardClone);
+      cardsFooterBtnContainer.remove();
+    } else if (cardsFooterBtnContainer !== originalCardsFooterBtnContainer) {
+      cardsFooterBtnContainer.parentElement.appendChild(originalCardsFooterBtnContainer);
+      cardsFooterBtnContainer.remove();
+    }
+  }
+
   const textSelectedCards = cardsFooter.querySelector(".text-selected-cards")
   textSelectedCards.textContent = createMessageForCardsFooter(selectedCards.length);
 
@@ -221,6 +256,7 @@ window.addEventListener("resize", _ => {
     );
 
     card.dispatchEvent(customEvent);
+    updateCardsFooter();
   })
 })
 
