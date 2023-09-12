@@ -1,5 +1,5 @@
-@import url("./inputButton.css");
-@import url("./button.css");
+@import url("../inputButton.css");
+@import url("../button.css");
 
 :root {
     --accent-color: #2795DB;

@@ -1,5 +1,5 @@
-@import url("./inputButton.css");
-@import url("./button.css");
+@import url("../inputButton.css");
+@import url("../button.css");
 
 body{
     width: 100%;
