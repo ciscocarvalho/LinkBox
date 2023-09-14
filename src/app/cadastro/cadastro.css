@@ -41,8 +41,9 @@ section{
     gap: 20px;
 }
 
-h1{
+.website-name {
     font-size: 48px;
+    font-weight: bold;
 }
 
 .termos{
@@ -147,7 +148,7 @@ form{
         background-color: #ffff;
     }
 
-    h1{
+    .website-name {
         font-size: 28px;
     }
     .logo{

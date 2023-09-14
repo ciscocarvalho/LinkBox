@@ -15,7 +15,7 @@ const page: React.FC = () => {
         <a href="/">
             <div className="brand">
                 <img className="logo" src="images/Logo.svg" alt="LinkBox logo" />
-                <h1>LinkBox</h1>
+                <p className="website-name">LinkBox</p>
             </div>
         </a>
         <nav>
@@ -25,7 +25,7 @@ const page: React.FC = () => {
     </header>
     <section>
         <div className="texto">
-            <h2>O melhor lugar para organizar seus links!</h2>
+            <p className="headline">O melhor lugar para organizar seus links!</p>
             <p>Use o LinkBox para uma organização sem dor de cabeça</p>
             <a href="cadastro"><span>Começe agora</span></a>
         </div>

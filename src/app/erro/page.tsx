@@ -13,7 +13,7 @@ const page: React.FC = () => {
     <a href="/">
         <div className="brand">
             <img src="images/Logo.svg" className="logo" />
-            <h1>LinkBox</h1>
+            <p className="website-name">LinkBox</p>
         </div>
     </a>
 
@@ -21,7 +21,7 @@ const page: React.FC = () => {
         <img src="images/erro 404 img.svg" className="erro" />
     </section>
 
-    <h2>Página não encontrada!</h2>
+    <p className="error-message">Página não encontrada!</p>
   </>
 };
 

@@ -4,7 +4,7 @@ import '../reset.css';
 import './login.css';
 
 export const metadata: Metadata = {
-  title: 'Erro 404',
+  title: 'Login',
   icons: [{ rel: 'short icon', url: 'images/Logo.svg' } ],
 }
 
@@ -18,7 +18,7 @@ const page: React.FC = () => {
         <a href="/">
             <div className="brand">
                 <img className="logo" src="images/Logo.svg" alt="LinkBox logo" />
-                <h1>LinkBox</h1>
+                <p className="website-name">LinkBox</p>
             </div>
         </a>
 

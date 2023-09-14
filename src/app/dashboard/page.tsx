@@ -16,7 +16,7 @@ const page: React.FC = () => {
             <a href="/">
                 <div className="brand">
                     <img className="logo" src="images/Logo.svg" alt="LinkBox logo" />
-                    <h1>LinkBox</h1>
+                    <p className="website-name">LinkBox</p>
                 </div>
             </a>
         </div>
@@ -49,11 +49,11 @@ const page: React.FC = () => {
                 <p className="current-folder-name hidden"></p>
             </div>
         </header>
-        <h2 className="empty-folder-message hidden">
+        <p className="empty-folder-message hidden">
             Esta pasta está vazia.
             <br />
             Adicione um link ou uma pasta clicando no botão +
-        </h2>
+        </p>
         <div className="cards-container hidden"></div>
         <footer className="cards-footer hidden">
             <p className="text-selected-cards"></p>

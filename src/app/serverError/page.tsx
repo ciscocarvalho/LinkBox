@@ -12,11 +12,11 @@ const page: React.FC = () => {
   return <>
     <header>
         <img src="images/Logo.svg" className="logo" />
-        <h1>LinkBox</h1>
+        <p className="website-name">LinkBox</p>
     </header>
     <section>
         <img src="images/server_down.svg" className="erro" />
-        <h1>Ocorreu algum erro no servidor!</h1>
+        <p className="error-message">Ocorreu algum erro no servidor!</p>
     </section>
   </>
 };
